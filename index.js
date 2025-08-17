@@ -4,13 +4,12 @@ const htmlButton = document.querySelector("button");
 function createBoard(size = 16) {
     for (let i = 0; i < size * size; i++) {
         const htmlSquare = document.createElement("div");
+
         htmlSquare.style.flexBasis = `calc(100% / ${size})`;
         htmlSquare.classList.add("square");
         htmlContainer.appendChild(htmlSquare);
 
-        htmlSquare.addEventListener('mouseover', (e) => {
-            e.currentTarget.style.backgroundColor = getRandomColor();
-        })
+        htmlSquare.addEventListener('mouseover', setColor);
     }
 }
 
@@ -35,6 +34,22 @@ function newGrid() {
         createBoard(size);
     })
 }
+
+function setColor(event) {
+    const square = event.currentTarget;
+    let currentOpacity = parseFloat(square.style.opacity) || 0;
+
+    square.style.backgroundColor = getRandomColor();
+
+    if (currentOpacity < 1.0) {
+        currentOpacity += 0.1;
+    } else {
+        square.style.backgroundColor = "black";
+    }
+
+    square.style.opacity = currentOpacity;
+}
+
 
 function clearBoard() {
     while (htmlContainer.firstElementChild) {
