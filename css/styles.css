@@ -6,9 +6,17 @@
 
 body {
     display: flex;
+    flex-direction: column;
+    gap: 16px;
     min-height: 100vh;
     justify-content: center;
     align-items: center;
+}
+
+button {
+    width: 960px;
+    height: 35px;
+    border: 1px dotted black;
 }
 
 .container {
